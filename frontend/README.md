@@ -2,7 +2,7 @@
 
 ### At first clone the repo or download the zip file
 
-### Steps to run the App
+## Steps to run the App
 
 #### 1. Unzip the downloaded zip file
 
