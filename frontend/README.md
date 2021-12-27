@@ -8,7 +8,7 @@
 
 #### 2. First we will be running the server
 
-#### 3. Execute the following commands.
+#### 3. Execute the following commands
     
     ``` cd backend ```
     ``` npm install ```
@@ -18,6 +18,9 @@
 #### 5. Open another terminal and run following commands to start the frontend react app
 
   ``` cd frontend ```
+  
   ``` npm install ```
+  
   ``` npm start ```
+  
   This must have started out react app at localhost:3000
