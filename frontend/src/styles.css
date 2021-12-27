@@ -87,6 +87,23 @@ button{
 button:hover{
     background-color: #393fb6;
 }
+.btn{
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px;
+    background-color: #4DD637;
+    color: #ffffff;
+    border: 3px solid #4DD637;
+    border-radius: 7px;
+    width: 300px;
+    margin: 10px;
+    margin-left: 2.5%;
+}   
+
+.btn:hover{
+    background-color: #35a823;
+    cursor: grab;
+}
 
 .side{
     margin-top: 50px;
@@ -107,4 +124,34 @@ button:hover{
 .item a{
     text-decoration: none;
     color: #ffffff;
+}
+
+.test{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.options li{
+    list-style-type: none;
+
+}
+.message{
+    color: #ffffff;
+}
+.error{
+    background-color: rgb(172, 76, 76);
+    width: 350px;
+    padding: 10px;
+    margin-top:8px ;
+    border-radius:8px ;
+    border: 2px solid #f71212;
+}
+.success{
+    background-color: rgb(76, 172, 105);
+    width: 350px;
+    padding: 10px;
+    margin-top:8px ;
+    border-radius:8px ;
+    border: 2px solid #12f712;
 }

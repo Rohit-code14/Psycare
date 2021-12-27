@@ -1,8 +1,23 @@
-import  React from "react";
+import  React,{useState} from "react";
 import { Link } from "react-router-dom";
 import "../styles.css"
+import { ToastContainer, toast } from 'react-toastify';
+import { isAuthenticated } from "./authcalls";
 
 const Nav = () => {
+    const notify = () => toast("Wow so easy!");
+    const [isAuth,setIsAuth] = useState(false)
+    const checkAuth = async() =>{   
+        if( localStorage.getItem("token")){
+            setIsAuth(await isAuthenticated()? true : false)
+            console.log(isAuth);
+            return isAuth
+        }
+        else{
+            return false
+        }
+    }
+    checkAuth()
     return(
         <header>
             <nav class="navbar">
@@ -13,20 +28,19 @@ const Nav = () => {
                         </div>
                     </div>
                     <div class="right">
-                        {/* <Link style={{
-                            listStyle:"none",
-                            fontSize:18,
-                            paddingTop: 10,
-                            paddingBottom: 10,
-                            paddingRight: 20,
-                            paddingLeft: 20,
-                            fontWeight: 550
-                        }} className="item" to="/tips" >Home</Link>
-                        <Link class="item" style={{ listStyle: "none" }} href="/login" to="/login">Login</Link>
-                        <Link class="item" to="/register">Register</Link> */}
-                        <li className="item"><a href="/tips">Home</a></li>
-                        <li className="item"><a href="/register">Register</a></li>
-                        <li className="item"><a href="/login">login</a></li>
+                        {isAuth ? (
+                        <>
+                            <li className="item"><a href="/tips">Tips</a></li>
+                            <li className="item"><a href="/test">Take Assessment</a></li>
+                            <li className="item"><a href="/logout">Logout</a></li>
+                        </>
+                        ) : (
+                        <>
+                            <li className="item"><a href="/register">Register</a></li>
+                            <li className="item"><a href="/login">login</a></li>
+                        </>
+                        )}
+                        {/* <li className="item"><button onClick={notify}>Tell me a Joke!</button></li> */}
                     </div>
                 </ul>
             </nav>
