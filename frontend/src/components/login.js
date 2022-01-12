@@ -1,5 +1,5 @@
 import React,{useState} from "react"
-import leftimg from "./leftimg.png"
+import leftimg from "./img/leftimg.png"
 import Nav from "./Nav"
 // import axios from "axios"
 import { signIn,authenticate, isAuthenticated } from "./authcalls"
