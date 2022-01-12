@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Nav from "./Nav"
-import {getUser,isAuthenticated} from "./authcalls"
+import {getUser} from "./authcalls"
 import Progress from "./progress";
-import { Redirect } from "react-router-dom";
 import cycle from "./img/cycle.svg";
 import { Scrollbars } from 'react-custom-scrollbars-2';
 

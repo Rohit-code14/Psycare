@@ -1,11 +1,11 @@
 import  React,{useState} from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "../styles.css"
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import { isAuthenticated } from "./authcalls";
 
 const Nav = () => {
-    const notify = () => toast("Wow so easy!");
+    // const notify = () => toast("Wow so easy!");
     const [isAuth,setIsAuth] = useState(false)
     const checkAuth = async() =>{   
         if( localStorage.getItem("token")){

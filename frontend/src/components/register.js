@@ -1,4 +1,4 @@
-import leftimg from "./leftimg.png"
+import leftimg from "./img/leftimg.png"
 import React,{useState} from "react"
 import Nav from "./Nav"
 // import axios from "axios"

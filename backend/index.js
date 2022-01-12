@@ -52,7 +52,7 @@ app.post("/api/register", async(req,res) => {
             {user_id : user._id,email},
             process.env.SECRET,
             {
-                expiresIn: "5h"
+                expiresIn: "30d"
             }
         )
         user.token = token
@@ -83,12 +83,12 @@ app.post("/api/login", async (req,res) =>{
                 {user_id : user._id,email},
                 process.env.SECRET,
                 {
-                    expiresIn: "5h"
+                    expiresIn: "30d"
                 }
             )
             user.password = undefined
             const options = {
-                expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+                expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
                 httpOnly: true,
             }
             return res.status(200).cookie("token",token,options).json({user,token})
@@ -198,6 +198,6 @@ app.get("/api/user/:token",async(req,res,next) => {
     return res.status(200).json({user})
 })
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log("Listening at ",process.env.PORT);
 })

@@ -3,7 +3,7 @@ import Nav from "./Nav"
 import yoga1 from "./img/yoga1.png"
 import group from "./img/group.png"
 import doc from "./img/doc.png"
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Scrollbars } from 'react-custom-scrollbars-2';
 
 const Home = () =>{
