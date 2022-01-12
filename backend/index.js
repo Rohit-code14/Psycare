@@ -19,6 +19,7 @@ mongoose.connect(process.env.MONGODB,{
     console.log(error);
 })
 app.use(morgan("tiny"))
+app.use(cookieparser())
 app.use(cors())
 app.use(express.json())
 // app.use(express.urlencoded({ extended: true }))
@@ -46,6 +47,7 @@ app.post("/api/register", async(req,res) => {
             email:email.toLowerCase(),
             password:encryPassword
         })
+        console.log("Register :",user);
         const token = jwt.sign(
             {user_id : user._id,email},
             process.env.SECRET,
@@ -54,7 +56,7 @@ app.post("/api/register", async(req,res) => {
             }
         )
         user.token = token
-        user.save({validateBeforeSave:false})
+        // user.save()
         user.password = undefined
         return res.status(201).json({
             user,
@@ -123,16 +125,25 @@ app.post("/api/verify",  async (req,res,next) =>{
         
 })
 const isLoggedIn =   async (req,res,next) =>{
-    const token = req.cookies.token || req.header("Authorization").replace('Bearer ','')
+
+    // if(req.cookie.token){
+    //     const token = req.cookie.token
+    // }
+    const token = req.body.token
+    console.log("token at isLoggedin : ",token);
+    // const token = req.body.token || req.cookies.token ||  req.header("Authorization").replace('Bearer ','')
 
     if(!token){
         return false
     }
 
     const decode = jwt.verify(token, process.env.SECRET)
+    console.log("isLogged in : ",decode);
 
-    const user = await User.findById(decode.id)
+    const user = await User.findById(decode.user_id)
+    console.log("islogged in user: ",user);
     if(user){
+        req.user = user
         next();
         return user
     }
@@ -150,7 +161,42 @@ app.get("/api/logout",isLoggedIn,(req,res,next) =>{
     })
 })
 
+app.post("/api/score",isLoggedIn,async(req,res,next)=>{
+    const userins = await User.findOne({email:req.user.email})
+    console.log("User in score : ",userins);
+    if(userins){
+        userins.health.score = req.body.mark;
+        userins.save()
+        console.log("Updated user: ",userins);
+        return res.status(200).json({
+            message:"Score updated",
+            success:true
+        })
+    }
+    return res.status(400).json({err:"Error in updaating score ...try again"})
+})
 
+app.get("/api/user/:token",async(req,res,next) => {
+    const token = req.params.token
+    if(!token){
+        return res.status(400).json({
+            err:"Token not received"
+        })
+    }
+    const decode = jwt.verify(token, process.env.SECRET)
+    console.log("isLogged in : ",decode);
+
+    const user = await User.findById(decode.user_id)
+    user.password = undefined
+    console.log("islogged in user: ",user);
+    if(!user){
+        return res.status(400).json({
+            err:"Invalid token"
+        })
+    }
+    console.log("final return : ",user);
+    return res.status(200).json({user})
+})
 
 app.listen(process.env.PORT, () => {
     console.log("Listening at ",process.env.PORT);

@@ -2,6 +2,7 @@ import React,{useState} from "react"
 import Nav from "./Nav"
 import { isAuthenticated } from "./authcalls"
 import { Redirect } from "react-router-dom"
+import { Scrollbars } from 'react-custom-scrollbars-2';
 
 const Motivation = () => {
     const [isAuth,setIsAuth] = useState(false)
@@ -18,6 +19,7 @@ const Motivation = () => {
     checkAuth()
     const vidcode = ['vix0NbikS5o','ZWVcSwcbDK0','agPsqRDNS3g', 'NQcYZplTXnQ', 'oWjSdwzOA6k',  '45w-kqpWVGk']
     return(
+        <Scrollbars style={{ width: "100%",height:800  }}>
         <>
             <Nav />
         {!isAuth ? (
@@ -40,7 +42,9 @@ const Motivation = () => {
             }
             </>
         )}
+        <div className="empty"></div>
         </>
+        </Scrollbars>
     )
 }
 
