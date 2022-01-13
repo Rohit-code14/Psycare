@@ -91,7 +91,6 @@ const Good = ({history}) =>{
         ) : (
             <>
             <h1>404 UnAuthorized</h1>
-            {history.push("/login")}
             {/* <Redirect to="/login" /> */}
             </>
         )}

@@ -1,4 +1,4 @@
-import React,{useState} from "react"
+import React,{useEffect, useState} from "react"
 import leftimg from "./img/leftimg.png"
 import Nav from "./Nav"
 // import axios from "axios"
@@ -15,6 +15,12 @@ const Login = () => {
     const {token} = isAuthenticated()
 
     const [isAuth,setIsAuth] = useState(false)
+    useEffect(()=>{
+        async function checkAuthCall(){
+            await checkAuth()
+        }
+        checkAuthCall()
+    })
     const checkAuth = async() =>{   
         if( localStorage.getItem("token")){
             setIsAuth(await isAuthenticated()? true : false)
@@ -25,7 +31,7 @@ const Login = () => {
             return false
         }
     }
-    checkAuth()
+    // checkAuth()
     // const url = "http://localhost:5000/api/login"
     if(token){
         return <Redirect to="/test" />

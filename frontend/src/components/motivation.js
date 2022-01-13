@@ -1,10 +1,16 @@
-import React,{useState} from "react"
+import React,{useEffect, useState} from "react"
 import Nav from "./Nav"
 import { isAuthenticated } from "./authcalls"
 import { Scrollbars } from 'react-custom-scrollbars-2';
 
 const Motivation = () => {
     const [isAuth,setIsAuth] = useState(false)
+    useEffect(()=>{
+        async function checkAuthCall(){
+            await checkAuth();
+        }
+        checkAuthCall();
+    })
     const checkAuth = async() =>{   
         if( localStorage.getItem("token")){
             setIsAuth(await isAuthenticated()? true : false)
@@ -15,7 +21,7 @@ const Motivation = () => {
             return false
         }
     }
-    checkAuth()
+    // checkAuth()
     const vidcode = ['vix0NbikS5o','ZWVcSwcbDK0','agPsqRDNS3g', 'NQcYZplTXnQ', 'oWjSdwzOA6k',  '45w-kqpWVGk']
     return(
         <Scrollbars style={{ width: "100%",height:800  }}>

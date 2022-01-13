@@ -1,4 +1,4 @@
-import  React,{useState} from "react";
+import  React,{useEffect, useState} from "react";
 // import { Link } from "react-router-dom";
 import "../styles.css"
 // import { ToastContainer, toast } from 'react-toastify';
@@ -6,6 +6,12 @@ import { isAuthenticated } from "./authcalls";
 
 const Nav = () => {
     // const notify = () => toast("Wow so easy!");
+    useEffect(()=>{
+        async function checkAuthCall(){
+            await checkAuth()
+        }
+        checkAuthCall();
+    })
     const [isAuth,setIsAuth] = useState(false)
     const checkAuth = async() =>{   
         if( localStorage.getItem("token")){
@@ -17,17 +23,17 @@ const Nav = () => {
             return false
         }
     }
-    checkAuth()
+    // checkAuth()
     return(
         <header>
-            <nav class="navbar">
-                <ul class="navul">
-                    <div class="left">
-                        <div class="item">
+            <nav className="navbar">
+                <ul className="navul">
+                    <div className="left">
+                        <div className="item">
                             <h1>Psycare</h1>
                         </div>
                     </div>
-                    <div class="right">
+                    <div className="right">
                         {isAuth ? (
                         <>
                             <li className="item"><a href="/tips">Tips</a></li>

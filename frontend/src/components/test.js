@@ -21,13 +21,13 @@ const Test = ({history}) => {
     }, [])
     const SetOption = (qno,opt) =>{
 
-        console.log("Qno : ",qno);
+        // console.log("Qno : ",qno);
         dummy = answers
         dummy[qno] = opt
         setAnswers(dummy)
         // console.log(answers);
     }
-    const calcScoreAndSubmit = () =>{
+    const calcScoreAndSubmit = async () =>{
         const correct = ['d','d','c','d','a','b','c','d','a','b']
         let marks = 0
         for (let index = 0; index < answers.length; index++) {
@@ -37,7 +37,7 @@ const Test = ({history}) => {
             }   
         }
         // console.log("Calculated mark: ",marks);
-        const responce = SetScore(marks)
+        const responce = await SetScore(marks)
         // console.log("Submit responce: ",responce);
         if(!marks){
             return history.push("/test")
@@ -593,38 +593,3 @@ const Test = ({history}) => {
 }
 
 export default Test;
-
-                // {/* <h2>How are you feeling?</h2>
-                // <ul className="options" style={{padding:"120"}}>
-                //     <li className="ans" onClick={() => SetOption(0,'a')}>
-                //     <label for="opt" onClick={() => SetOption(0,'a')} type="radio" name="opt" id="opt" >
-                //     <input  type="radio" name="opt" id="opt"  />Happy
-                //         Happy</label>
-                //     </li>
-                //     <li className="ans" >
-                //     <label for="opt" onClick={() => SetOption(0,'b')}>
-                //     <input onClick={() => SetOption(0,'b')} type="radio" name="opt" id="opt"  />
-                //         Happy</label>
-                //     </li>
-                //     <li className="ans" >
-                //     <label for="opt">
-                //     <input onClick={() => SetOption(0,'c')} type="radio" name="opt" id="opt"  />
-                //         Happy</label>
-                //     </li>
-                //     <li className="ans" >
-                //     <label for="opt">
-                //     <input onClick={() => SetOption(0,'d')} type="radio" name="opt" id="opt"  />
-                //         Happy</label>
-                //     </li>
-                //     <RadioGroup  vertical>
-                //     <RadioButton value="apple" className="radiobtn">
-                //         Apple
-                //     </RadioButton>
-                //     <RadioButton value="orange"  >
-                //         Orange   
-                //     </RadioButton>
-                //     <RadioButton value="melon" style={{padding:"100"}}>
-                //         Melon
-                //     </RadioButton>
-                //     </RadioGroup>
-                // </ul> */}

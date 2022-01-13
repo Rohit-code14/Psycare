@@ -93,7 +93,6 @@ const Medium = ({history}) =>{
             </>
         ) : (
             <>
-            {history.push("/login")}
             <h1>404 UnAuthorized</h1>
             {/* <Redirect to="/login" /> */}
             </>

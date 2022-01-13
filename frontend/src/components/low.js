@@ -30,12 +30,12 @@ const Low = ({history}) =>{
     //     }
     // }
     const getUserDetails =async () =>{
-        const userObj = await getUser()
+        var userObj = await getUser();
         if(!userObj){
             setUser(null)
             return history.push("/login");
         }
-        // console.log(userObj.user);
+        console.log(userObj.user);
         // console.log("userObj: ",userObj.user.email);
         setUser(userObj.user)
         setIsAuth(true)
@@ -43,15 +43,19 @@ const Low = ({history}) =>{
     }
     // const mark = user.health.score;
     const prog = () =>{
-        if(user.health.score<=7 && user.health.score>=5){
-            return history.push("/medium")
+            
+            if(user.health.score<=7 && user.health.score>=5){
+                return history.push("/medium")
+            }
+            else if(user.health.score>7){
+                return history.push("/good")
+            }
+            const mark= user.health.score *10;
+            return <Progress bgcolor="#E21717" progress={mark}  height={20} />
+
+
         }
-        else if(user.health.score>7){
-            return history.push("/good")
-        }
-        const mark= user.health.score *10;
-        return <Progress bgcolor="#E21717" progress={mark}  height={20} />
-    }
+    
     // console.log("isAuth before main:",isAuth);
     // console.log("user before main:",user);
     return(
@@ -98,7 +102,6 @@ const Low = ({history}) =>{
             </>
         ) : (
             <>
-            {history.push("/login")}
             <h1>404 UnAuthorized</h1>
             {/* <Redirect to="/login" /> */}
             </>

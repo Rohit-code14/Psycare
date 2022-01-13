@@ -1,5 +1,5 @@
 import leftimg from "./img/leftimg.png"
-import React,{useState} from "react"
+import React,{useState,useEffect} from "react"
 import Nav from "./Nav"
 // import axios from "axios"
 import { signUp,isAuthenticated } from "./authcalls"
@@ -12,6 +12,12 @@ const Register = () => {
     const [error, setError] = useState("")
     const [success, setSuccess] = useState(false)
     const [isAuth,setIsAuth] = useState(false)
+    useEffect(()=>{
+        async function checkAuthCall(){
+            await checkAuth()
+        }
+        checkAuthCall()
+    },[])
     const checkAuth = async() =>{   
         if( localStorage.getItem("token")){
             setIsAuth(await isAuthenticated()? true : false)
@@ -22,7 +28,7 @@ const Register = () => {
             return false
         }
     }
-    checkAuth()
+    // checkAuth()
     console.log(success);
     const handleSubmit =(event) =>{
         event.preventDefault()
