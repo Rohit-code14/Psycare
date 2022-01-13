@@ -17,16 +17,15 @@ const Test = ({history}) => {
     useEffect(() => {
         checkAuth();
         getUserDetails();
-        console.log("API:",process.env.REACT_APP_API);
+        // console.log("API:",process.env.REACT_APP_API);
     }, [])
     const SetOption = (qno,opt) =>{
-        console.log("API:",process.env.DB);
 
         console.log("Qno : ",qno);
         dummy = answers
         dummy[qno] = opt
         setAnswers(dummy)
-        console.log(answers);
+        // console.log(answers);
     }
     const calcScoreAndSubmit = () =>{
         const correct = ['d','d','c','d','a','b','c','d','a','b']
@@ -37,9 +36,9 @@ const Test = ({history}) => {
                 setMark(mark+1)
             }   
         }
-        console.log("Calculated mark: ",marks);
+        // console.log("Calculated mark: ",marks);
         const responce = SetScore(marks)
-        console.log("Submit responce: ",responce);
+        // console.log("Submit responce: ",responce);
         if(!marks){
             return history.push("/test")
         }
@@ -54,7 +53,7 @@ const Test = ({history}) => {
     const checkAuth = async() =>{   
         if( localStorage.getItem("token")){
             setIsAuth(await isAuthenticated()? true : false)
-            console.log(isAuth);
+            // console.log(isAuth);
             return isAuth
         }
         else{
@@ -63,7 +62,7 @@ const Test = ({history}) => {
     }
     const getUserDetails =async () =>{
         const userObj = await getUser()
-        console.log("userObj: ",userObj.user.email);
+        // console.log("userObj: ",userObj.user.email);
         if(!userObj){
             setUser(null)
             return;
@@ -71,9 +70,6 @@ const Test = ({history}) => {
         setUser(userObj.user)
     }
 
-    // checkAuth()
-    // const ques = ["How often have you been bothered by feeling down, depressed or hopeless?","How are you feeling? -2","How are you feeling? - 3", "How are you feeling? - 4", "How are you feeling? -5"]
-    // const options = [["Happy","Sad","Empty Minded","Very Depressed"],["Happy","Sad","Empty Minded","Very Depressed"],["Happy","Sad","Empty Minded","Very Depressed"],["Happy","Sad","Empty Minded","Very Depressed"],["Happy","Sad","Empty Minded","Very Depressed"]]
     if(user && user.health && user.health.score >= 0){
         if(user.health.score<4){
             // return history.push("/low");

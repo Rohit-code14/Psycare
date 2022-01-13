@@ -17,9 +17,7 @@ import {
  const dotenv= require('dotenv')
 
 function App() {
-  const res = dotenv.config()
-  console.log("DotENv: ",res);
-  console.log("DotENv err: ",res.error);
+  dotenv.config()
   return (
     <BrowserRouter>
       <Switch>

@@ -1,7 +1,6 @@
 import React,{useState} from "react"
 import Nav from "./Nav"
 import { isAuthenticated } from "./authcalls"
-import { Redirect } from "react-router-dom"
 import { Scrollbars } from 'react-custom-scrollbars-2';
 
 const Motivation = () => {
@@ -9,7 +8,7 @@ const Motivation = () => {
     const checkAuth = async() =>{   
         if( localStorage.getItem("token")){
             setIsAuth(await isAuthenticated()? true : false)
-            console.log(isAuth);
+            // console.log(isAuth);
             return isAuth
         }
         else{

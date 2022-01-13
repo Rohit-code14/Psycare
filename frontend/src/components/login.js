@@ -18,7 +18,7 @@ const Login = () => {
     const checkAuth = async() =>{   
         if( localStorage.getItem("token")){
             setIsAuth(await isAuthenticated()? true : false)
-            console.log(isAuth);
+            // console.log(isAuth);
             return isAuth
         }
         else{
@@ -43,7 +43,7 @@ const Login = () => {
                 setLoading(false)
             }
             else{
-                console.log(data);
+                // console.log(data);
                 setEmail("")
                 setPassword("")
                 setLoading(false)

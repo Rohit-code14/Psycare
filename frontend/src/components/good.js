@@ -35,11 +35,11 @@ const Good = ({history}) =>{
             setUser(null)
             return history.push("/login");
         }
-        console.log(userObj.user);
-        console.log("userObj: ",userObj.user.email);
+        // console.log(userObj.user);
+        // console.log("userObj: ",userObj.user.email);
         setUser(userObj.user)
         setIsAuth(true)
-        console.log("user in get: ",user);
+        // console.log("user in get: ",user);
     }
     // const mark = user.health.score;
     const prog = () =>{
@@ -52,8 +52,8 @@ const Good = ({history}) =>{
         const mark= user.health.score *10;
         return <Progress bgcolor="#00D84A" progress={mark}  height={20} />
     }
-    console.log("isAuth before main:",isAuth);
-    console.log("user before main:",user);
+    // console.log("isAuth before main:",isAuth);
+    // console.log("user before main:",user);
     return(
         <>
         {isAuth ? (
@@ -91,6 +91,7 @@ const Good = ({history}) =>{
         ) : (
             <>
             <h1>404 UnAuthorized</h1>
+            {history.push("/login")}
             {/* <Redirect to="/login" /> */}
             </>
         )}

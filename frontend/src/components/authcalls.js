@@ -2,7 +2,7 @@ import {API} from "./backend"
 require('dotenv').config()
 
 export const signUp = async user =>{
-    console.log(process.env.API);
+    // console.log(process.env.API);
     return await fetch(`${API}/register/`,{
     // return await fetch(`http://127.0.0.1:5000/api/register/`,{
         method:"POST",
@@ -57,7 +57,7 @@ export const isAuthenticated =async () =>{
         return false
     }
     if(!localStorage.getItem("token")){
-        console.log("No token !!");
+        // console.log("No token !!");
         const resp = false
         return resp
     }
@@ -75,7 +75,7 @@ export const isAuthenticated =async () =>{
         }
         
         ).then(resp => {
-            console.log(resp);
+            // console.log(resp);
             return resp.json()
         }).catch(err => console.log("Not working ",err))
 
@@ -83,7 +83,7 @@ export const isAuthenticated =async () =>{
 
 export const SetScore = async(mark) =>{
     const token = JSON.parse(localStorage.getItem("token"))
-    console.log("set score mark: ",mark);
+    // console.log("set score mark: ",mark);
     // return await fetch(`http://127.0.0.1:5000/api/score/`,{
         return await fetch(`${API}/score/`,{
             method:"POST",
@@ -97,7 +97,7 @@ export const SetScore = async(mark) =>{
         }
         
         ).then(resp => {
-            console.log(resp);
+            // console.log(resp);
             return resp.json()
         }).catch(err => console.log("Not working ",err))
 }
@@ -105,7 +105,7 @@ export const SetScore = async(mark) =>{
 
 export const getUser =async () =>{
     const token = localStorage.getItem("token")
-    console.log("token: ",token);
+    // console.log("token: ",token);
     if(!token){
         return null
     }
@@ -123,7 +123,7 @@ export const getUser =async () =>{
             // body:JSON.stringify({mark,token})
         }
     ).then((resp)=>{
-        console.log(resp);
+        // console.log(resp);
         return resp.json()
     }).catch((err)=>{
         console.log("Error : ",err);
