@@ -4,7 +4,7 @@ import {getUser} from "./authcalls"
 import Progress from "./progress";
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import s from "./img/s.svg"
-
+import { Link } from "react-router-dom";
 
 const Low = ({history}) =>{
     const [user,setUser] = useState({})
@@ -78,7 +78,8 @@ const Low = ({history}) =>{
                             <h1>You Need Councling Immediately !!</h1>
                             <br/>
                             <p className="healthy-p">Hey, According the answers given by you we found that your health condition is very poor. Don't worry! we are here to help you. Every problem has a solution. Take up Councling from our best Doctor or any other Doctor,but get Councling Immediately !!</p>
-                            <button>Take up Consultation</button>
+                            {/* <Link to="https://fervent-edison-8188cf.netlify.app/">Take up Consultation</Link> */}
+                            <Link className="link" to={{ pathname: "https://fervent-edison-8188cf.netlify.app/" }} target="_blank" >Take up Consultation</Link>
                         </div>
                     </div>
                     <div className="medium-container">
